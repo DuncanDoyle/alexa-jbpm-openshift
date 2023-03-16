@@ -1,0 +1,511 @@
+apiVersion: v1
+kind: Template
+metadata:
+  creationTimestamp: null
+  name: alexa-jbpm
+objects:
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    generation: 1
+    labels:
+      app: eap70-basic-s2i
+      application: alexa-jbpm
+      template: eap70-basic-s2i
+      xpaas: 1.4.7
+    name: alexa-jbpm
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.208.107:5000/alexa-jbpm-dgmccloud/alexa-jbpm:latest
+      generation: null
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/display-name: Red Hat JBoss EAP 6.4
+      openshift.io/image.dockerRepositoryCheck: 2017-11-06T15:38:47Z
+      openshift.io/provider-display-name: Red Hat, Inc.
+      version: 1.4.7
+    creationTimestamp: null
+    generation: 2
+    name: jboss-eap64-openshift
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations:
+        description: JBoss EAP 6.4 S2I images.
+        iconClass: icon-eap
+        openshift.io/display-name: Red Hat JBoss EAP 6.4
+        sampleContextDir: kitchensink
+        sampleRef: 6.4.x
+        sampleRepo: https://github.com/jboss-developer/jboss-eap-quickstarts.git
+        supports: eap:6.4,javaee:6,java:8
+        tags: builder,eap,javaee,java,jboss,hidden
+        version: "1.1"
+      from:
+        kind: DockerImage
+        name: 172.30.208.107:5000/alexa-jbpm-dgmccloud/jboss-eap64-openshift:1.1
+      generation: 2
+      importPolicy: {}
+      name: "1.1"
+      referencePolicy:
+        type: Source
+    - annotations:
+        description: JBoss EAP 6.4 S2I images.
+        iconClass: icon-eap
+        openshift.io/display-name: Red Hat JBoss EAP 6.4
+        sampleContextDir: kitchensink
+        sampleRef: 6.4.x
+        sampleRepo: https://github.com/jboss-developer/jboss-eap-quickstarts.git
+        supports: eap:6.4,javaee:6,java:8
+        tags: builder,eap,javaee,java,jboss,hidden
+        version: "1.2"
+      from:
+        kind: DockerImage
+        name: 172.30.208.107:5000/alexa-jbpm-dgmccloud/jboss-eap64-openshift:1.2
+      generation: 2
+      importPolicy: {}
+      name: "1.2"
+      referencePolicy:
+        type: Source
+    - annotations:
+        description: JBoss EAP 6.4 S2I images.
+        iconClass: icon-eap
+        openshift.io/display-name: Red Hat JBoss EAP 6.4
+        sampleContextDir: kitchensink
+        sampleRef: 6.4.x
+        sampleRepo: https://github.com/jboss-developer/jboss-eap-quickstarts.git
+        supports: eap:6.4,javaee:6,java:8
+        tags: builder,eap,javaee,java,jboss,hidden
+        version: "1.3"
+      from:
+        kind: DockerImage
+        name: 172.30.208.107:5000/alexa-jbpm-dgmccloud/jboss-eap64-openshift:1.3
+      generation: 2
+      importPolicy: {}
+      name: "1.3"
+      referencePolicy:
+        type: Source
+    - annotations:
+        description: JBoss EAP 6.4 S2I images.
+        iconClass: icon-eap
+        openshift.io/display-name: Red Hat JBoss EAP 6.4
+        sampleContextDir: kitchensink
+        sampleRef: 6.4.x
+        sampleRepo: https://github.com/jboss-developer/jboss-eap-quickstarts.git
+        supports: eap:6.4,javaee:6,java:8
+        tags: builder,eap,javaee,java,jboss,hidden
+        version: "1.4"
+      from:
+        kind: DockerImage
+        name: 172.30.208.107:5000/alexa-jbpm-dgmccloud/jboss-eap64-openshift:1.4
+      generation: 2
+      importPolicy: {}
+      name: "1.4"
+      referencePolicy:
+        type: Source
+    - annotations:
+        description: JBoss EAP 6.4 S2I images.
+        iconClass: icon-eap
+        openshift.io/display-name: Red Hat JBoss EAP 6.4
+        sampleContextDir: kitchensink
+        sampleRef: 6.4.x
+        sampleRepo: https://github.com/jboss-developer/jboss-eap-quickstarts.git
+        supports: eap:6.4,javaee:6,java:8
+        tags: builder,eap,javaee,java,jboss,hidden
+        version: "1.5"
+      from:
+        kind: DockerImage
+        name: 172.30.208.107:5000/alexa-jbpm-dgmccloud/jboss-eap64-openshift:1.5
+      generation: 2
+      importPolicy: {}
+      name: "1.5"
+      referencePolicy:
+        type: Source
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/display-name: Red Hat JBoss EAP 7.0
+      openshift.io/image.dockerRepositoryCheck: 2017-11-06T15:38:47Z
+      openshift.io/provider-display-name: Red Hat, Inc.
+      version: 1.4.7
+    creationTimestamp: null
+    generation: 2
+    name: jboss-eap70-openshift
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations:
+        description: JBoss EAP 7.0 S2I images.
+        iconClass: icon-eap
+        openshift.io/display-name: Red Hat JBoss EAP 7.0
+        sampleContextDir: kitchensink
+        sampleRef: 7.0.0.GA
+        sampleRepo: https://github.com/jboss-developer/jboss-eap-quickstarts.git
+        supports: eap:7.0,javaee:7,java:8
+        tags: builder,eap,javaee,java,jboss,hidden
+        version: "1.3"
+      from:
+        kind: DockerImage
+        name: 172.30.208.107:5000/alexa-jbpm-dgmccloud/jboss-eap70-openshift:1.3
+      generation: 2
+      importPolicy: {}
+      name: "1.3"
+      referencePolicy:
+        type: Source
+    - annotations:
+        description: JBoss EAP 7.0 S2I images.
+        iconClass: icon-eap
+        openshift.io/display-name: Red Hat JBoss EAP 7.0
+        sampleContextDir: kitchensink
+        sampleRef: 7.0.0.GA
+        sampleRepo: https://github.com/jboss-developer/jboss-eap-quickstarts.git
+        supports: eap:7.0,javaee:7,java:8
+        tags: builder,eap,javaee,java,jboss,hidden
+        version: "1.4"
+      from:
+        kind: DockerImage
+        name: 172.30.208.107:5000/alexa-jbpm-dgmccloud/jboss-eap70-openshift:1.4
+      generation: 2
+      importPolicy: {}
+      name: "1.4"
+      referencePolicy:
+        type: Source
+    - annotations:
+        description: JBoss EAP 7.0 S2I images.
+        iconClass: icon-eap
+        openshift.io/display-name: Red Hat JBoss EAP 7.0
+        sampleContextDir: kitchensink
+        sampleRef: 7.0.0.GA
+        sampleRepo: https://github.com/jboss-developer/jboss-eap-quickstarts.git
+        supports: eap:7.0,javaee:7,java:8
+        tags: builder,eap,javaee,java,jboss,hidden
+        version: "1.5"
+      from:
+        kind: DockerImage
+        name: 172.30.208.107:5000/alexa-jbpm-dgmccloud/jboss-eap70-openshift:1.5
+      generation: 2
+      importPolicy: {}
+      name: "1.5"
+      referencePolicy:
+        type: Source
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/display-name: Red Hat JBoss EAP 7.1
+      openshift.io/image.dockerRepositoryCheck: 2017-11-06T15:38:46Z
+      openshift.io/provider-display-name: Red Hat, Inc.
+      version: 1.4.7
+    creationTimestamp: null
+    generation: 2
+    name: jboss-eap71-openshift
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations:
+        description: JBoss EAP 7.1 Tech Preview.
+        iconClass: icon-eap
+        openshift.io/display-name: Red Hat JBoss EAP 7.1 (Tech Preview)
+        sampleContextDir: kitchensink
+        sampleRef: 7.0.0.GA
+        sampleRepo: https://github.com/jboss-developer/jboss-eap-quickstarts.git
+        supports: eap:7.1,javaee:7,java:8
+        tags: builder,eap,javaee,java,jboss,hidden
+        version: "1.0"
+      from:
+        kind: DockerImage
+        name: 172.30.208.107:5000/alexa-jbpm-dgmccloud/jboss-eap71-openshift:1.0-TP
+      generation: 2
+      importPolicy: {}
+      name: 1.0-TP
+      referencePolicy:
+        type: Source
+    - annotations:
+        description: JBoss EAP 7.1 Tech Preview.
+        iconClass: icon-eap
+        openshift.io/display-name: Red Hat JBoss EAP 7.1 (Tech Preview)
+        sampleContextDir: kitchensink
+        sampleRef: 7.0.0.GA
+        sampleRepo: https://github.com/jboss-developer/jboss-eap-quickstarts.git
+        supports: eap:7.1,javaee:7,java:8,xpass:1.0
+        tags: builder,eap,javaee,java,jboss,hidden
+        version: TP
+      from:
+        kind: DockerImage
+        name: 172.30.208.107:5000/alexa-jbpm-dgmccloud/jboss-eap71-openshift:TP
+      generation: 1
+      importPolicy: {}
+      name: TP
+      referencePolicy:
+        type: Source
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/display-name: Red Hat OpenJDK 8
+      openshift.io/image.dockerRepositoryCheck: 2017-11-06T15:38:52Z
+      openshift.io/provider-display-name: Red Hat, Inc.
+      version: 1.4.7
+    creationTimestamp: null
+    generation: 2
+    name: redhat-openjdk18-openshift
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations:
+        description: Build and run Java applications using Maven and OpenJDK 8.
+        iconClass: icon-rh-openjdk
+        openshift.io/display-name: Red Hat OpenJDK 8
+        sampleContextDir: undertow-servlet
+        sampleRepo: https://github.com/jboss-openshift/openshift-quickstarts
+        supports: java:8
+        tags: builder,java,openjdk,hidden
+        version: "1.0"
+      from:
+        kind: DockerImage
+        name: 172.30.208.107:5000/alexa-jbpm-dgmccloud/redhat-openjdk18-openshift:1.0
+      generation: 2
+      importPolicy: {}
+      name: "1.0"
+      referencePolicy:
+        type: Source
+    - annotations:
+        description: Build and run Java applications using Maven and OpenJDK 8.
+        iconClass: icon-rh-openjdk
+        openshift.io/display-name: Red Hat OpenJDK 8
+        sampleContextDir: undertow-servlet
+        sampleRepo: https://github.com/jboss-openshift/openshift-quickstarts
+        supports: java:8
+        tags: builder,java,openjdk
+        version: "1.1"
+      from:
+        kind: DockerImage
+        name: 172.30.208.107:5000/alexa-jbpm-dgmccloud/redhat-openjdk18-openshift:1.1
+      generation: 2
+      importPolicy: {}
+      name: "1.1"
+      referencePolicy:
+        type: Source
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: eap70-basic-s2i
+      application: alexa-jbpm
+      template: eap70-basic-s2i
+      xpaas: 1.4.7
+    name: alexa-jbpm
+  spec:
+    failedBuildsHistoryLimit: 5
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: alexa-jbpm:latest
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      git:
+        ref: master
+        uri: https://github.com/DuncanDoyle/alexa-jbpm.git
+      type: Git
+    strategy:
+      sourceStrategy:
+        env:
+        - name: MAVEN_MIRROR_URL
+        - name: ARTIFACT_DIR
+        forcePull: true
+        from:
+          kind: ImageStreamTag
+          name: jboss-eap70-openshift:1.5
+      type: Source
+    successfulBuildsHistoryLimit: 5
+    triggers:
+    - github:
+        secret: Mn7bF0O7
+      type: GitHub
+    - generic:
+        secret: dgOrEtHd
+      type: Generic
+    - imageChange: {}
+      type: ImageChange
+    - type: ConfigChange
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    generation: 1
+    labels:
+      app: eap70-basic-s2i
+      application: alexa-jbpm
+      template: eap70-basic-s2i
+      xpaas: 1.4.7
+    name: alexa-jbpm
+  spec:
+    replicas: 1
+    selector:
+      deploymentConfig: alexa-jbpm
+    strategy:
+      activeDeadlineSeconds: 21600
+      recreateParams:
+        timeoutSeconds: 600
+      resources: {}
+      type: Recreate
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app: eap70-basic-s2i
+          application: alexa-jbpm
+          deploymentConfig: alexa-jbpm
+        name: alexa-jbpm
+      spec:
+        containers:
+        - env:
+          - name: OPENSHIFT_KUBE_PING_LABELS
+            value: application=alexa-jbpm
+          - name: OPENSHIFT_KUBE_PING_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: MQ_CLUSTER_PASSWORD
+            value: MvCwEdTY
+          - name: MQ_QUEUES
+          - name: MQ_TOPICS
+          - name: JGROUPS_CLUSTER_PASSWORD
+            value: 0xPm8Sgq
+          - name: AUTO_DEPLOY_EXPLODED
+            value: "false"
+          - name: "KIE_SERVER_URL"
+            value: "http://www.opendigitalautomation.com/kie-server"
+          - name: "CONTAINER_ID"
+            value: "com.redhat.bpms.examples:mortgage:1"
+          - name: "TASK_USER"
+            value: "bpmsAdmin"
+          - name: "KIE_SERVER_USER"
+            value: "bpmsAdmin"
+          - name: "KIE_SERVER_PASSWORD"
+            value: "bpmsuite1!"
+          image: 172.30.208.107:5000/alexa-jbpm-dgmccloud/alexa-jbpm@sha256:4751c1a91fc4e0f6af137e6f25c02ace049782584bee42900f72729961fb06b0
+          imagePullPolicy: Always
+          livenessProbe:
+            exec:
+              command:
+              - /bin/bash
+              - -c
+              - /opt/eap/bin/livenessProbe.sh
+            failureThreshold: 3
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: alexa-jbpm
+          ports:
+          - containerPort: 8778
+            name: jolokia
+            protocol: TCP
+          - containerPort: 8080
+            name: http
+            protocol: TCP
+          - containerPort: 8888
+            name: ping
+            protocol: TCP
+          readinessProbe:
+            exec:
+              command:
+              - /bin/bash
+              - -c
+              - /opt/eap/bin/readinessProbe.sh
+            failureThreshold: 3
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 75
+    test: false
+    triggers:
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - alexa-jbpm
+        from:
+          kind: ImageStreamTag
+          name: alexa-jbpm:latest
+          namespace: alexa-jbpm-dgmccloud
+      type: ImageChange
+    - type: ConfigChange
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      description: The web server's http port.
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: eap70-basic-s2i
+      application: alexa-jbpm
+      template: eap70-basic-s2i
+      xpaas: 1.4.7
+    name: alexa-jbpm
+  spec:
+    ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      deploymentConfig: alexa-jbpm
+    sessionAffinity: None
+    type: ClusterIP
+- apiVersion: v1
+  kind: Route
+  metadata:
+    annotations:
+      description: Route for application's http service.
+      openshift.io/generated-by: OpenShiftNewApp
+      openshift.io/host.generated: "true"
+    creationTimestamp: null
+    labels:
+      app: eap70-basic-s2i
+      application: alexa-jbpm
+      template: eap70-basic-s2i
+      xpaas: 1.4.7
+    name: alexa-jbpm
+  spec:
+    host: alexa-jbpm-alexa-jbpm-dgmccloud.1d35.starter-us-east-1.openshiftapps.com
+    to:
+      kind: Service
+      name: alexa-jbpm
+      weight: 100
+    wildcardPolicy: None

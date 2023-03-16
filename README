@@ -1,0 +1,17 @@
+# Commands to create an OpenShift installation of alexa-jbpm
+
+# Install the JBoss ImageStreams (probably not necessary on online)
+oc create -f https://raw.githubusercontent.com/jboss-openshift/application-templates/master/jboss-image-streams.json -n openshift
+
+# Install the JBoss EAP server template (also probably not necessary on online
+oc create -f https://raw.githubusercontent.com/jboss-openshift/application-templates/master/eap/eap70-basic-s2i.json -n openshift
+
+
+# Create a new project
+oc new-project alexa-jbpm --display-name="Alexa jBPM" --description="Amazon Echo (Alexa) voice interface into jBPM."
+
+# Create the application
+oc new-app --template=eap70-basic-s2i -p APPLICATION_NAME="alexa-jbpm" -p SOURCE_REPOSITORY_URL="https://github.com/DuncanDoyle/alexa-jbpm.git" -p SOURCE_REPOSITORY_REF=master -p CONTEXT_DIR="."
+
+# Export the OpenShift template
+oc export all --as-template=alexa-jbpm > alexa-jbpm-template.yaml

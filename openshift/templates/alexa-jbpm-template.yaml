@@ -1,0 +1,249 @@
+apiVersion: v1
+kind: Template
+metadata:
+  creationTimestamp: null
+  name: alexa-jbpm
+objects:
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: eap70-basic-s2i
+      application: alexa-jbpm
+      template: eap70-basic-s2i
+      xpaas: 1.4.7
+    name: alexa-jbpm
+  spec:
+    failedBuildsHistoryLimit: 5
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: alexa-jbpm:latest
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      git:
+        ref: ${GIT_REF}
+        uri: ${GIT_URI}
+      type: Git
+    strategy:
+      sourceStrategy:
+        env:
+        - name: MAVEN_MIRROR_URL
+        - name: ARTIFACT_DIR
+        forcePull: true
+        from:
+          kind: ImageStreamTag
+          name: jboss-eap70-openshift:1.5
+          namespace: ${IMAGE_STREAM_NAMESPACE}
+      type: Source
+    successfulBuildsHistoryLimit: 5
+    triggers:
+    - github:
+        secret: NQcXYQUu
+      type: GitHub
+    - generic:
+        secret: JmHrFEX1
+      type: Generic
+    - imageChange: {}
+      type: ImageChange
+    - type: ConfigChange
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    generation: 1
+    labels:
+      app: eap70-basic-s2i
+      application: alexa-jbpm
+      template: eap70-basic-s2i
+      xpaas: 1.4.7
+    name: alexa-jbpm
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: 172.30.1.1:5000/alexa-jbpm/alexa-jbpm:latest
+      generation: null
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: ""
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    generation: 1
+    labels:
+      app: eap70-basic-s2i
+      application: alexa-jbpm
+      template: eap70-basic-s2i
+      xpaas: 1.4.7
+    name: alexa-jbpm
+  spec:
+    replicas: 1
+    selector:
+      deploymentConfig: alexa-jbpm
+    strategy:
+      activeDeadlineSeconds: 21600
+      recreateParams:
+        timeoutSeconds: 600
+      resources: {}
+      type: Recreate
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app: eap70-basic-s2i
+          application: alexa-jbpm
+          deploymentConfig: alexa-jbpm
+        name: alexa-jbpm
+      spec:
+        containers:
+        - env:
+          - name: OPENSHIFT_KUBE_PING_LABELS
+            value: application=alexa-jbpm
+          - name: OPENSHIFT_KUBE_PING_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: MQ_CLUSTER_PASSWORD
+            value: DkO0VynC
+          - name: MQ_QUEUES
+          - name: MQ_TOPICS
+          - name: JGROUPS_CLUSTER_PASSWORD
+            value: MC1aU8o8
+          - name: AUTO_DEPLOY_EXPLODED
+            value: "false"
+          - name: KIE_SERVER_URL
+            value: http://ec2-34-225-34-168.compute-1.amazonaws.com/kie-server
+          - name: CONTAINER_ID
+            value: mortgage
+          - name: TASK_USER
+            value: admin
+          image: 172.30.1.1:5000/alexa-jbpm/alexa-jbpm@sha256:115f02ba1673b9c9b77243f729bd123ff43e1b6bb462b609cb477f7ce1812ffa
+          imagePullPolicy: Always
+          livenessProbe:
+            exec:
+              command:
+              - /bin/bash
+              - -c
+              - /opt/eap/bin/livenessProbe.sh
+            failureThreshold: 3
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: alexa-jbpm
+          ports:
+          - containerPort: 8778
+            name: jolokia
+            protocol: TCP
+          - containerPort: 8080
+            name: http
+            protocol: TCP
+          - containerPort: 8888
+            name: ping
+            protocol: TCP
+          readinessProbe:
+            exec:
+              command:
+              - /bin/bash
+              - -c
+              - /opt/eap/bin/readinessProbe.sh
+            failureThreshold: 3
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 75
+    test: false
+    triggers:
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - alexa-jbpm
+        from:
+          kind: ImageStreamTag
+          name: alexa-jbpm:latest
+          namespace: alexa-jbpm
+      type: ImageChange
+    - type: ConfigChange
+- apiVersion: v1
+  kind: Route
+  metadata:
+    annotations:
+      description: Route for application's http service.
+      openshift.io/generated-by: OpenShiftNewApp
+      openshift.io/host.generated: "true"
+    creationTimestamp: null
+    labels:
+      app: eap70-basic-s2i
+      application: alexa-jbpm
+      template: eap70-basic-s2i
+      xpaas: 1.4.7
+    name: alexa-jbpm
+  spec:
+    to:
+      kind: Service
+      name: alexa-jbpm
+      weight: 100
+    wildcardPolicy: None
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      description: The web server's http port.
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: eap70-basic-s2i
+      application: alexa-jbpm
+      template: eap70-basic-s2i
+      xpaas: 1.4.7
+    name: alexa-jbpm
+  spec:
+    ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      deploymentConfig: alexa-jbpm
+    sessionAffinity: None
+    type: ClusterIP
+parameters:
+- description: Namespace containing the Image Streams
+  displayName: Image Stream namespace
+  name: IMAGE_STREAM_NAMESPACE
+  required: true
+  value: openshift
+- description: Git source URI for application
+  displayName: Git source repository
+  name: GIT_URI
+  required: true
+  value: https://github.com/DuncanDoyle/alexa-jbpm
+- description: Git branch/tag reference
+  displayName: Git branch/tag reference
+  name: GIT_REF
+  required: true
+  value: master
